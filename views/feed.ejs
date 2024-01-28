@@ -1,0 +1,40 @@
+<% include ./partials/header.ejs %>
+
+
+<div class=" h-screen w-screen">
+    <div class=" bg-slate-600 h-16 w-full mb-4 ">
+        <div class="flex justify-between items-center pt-3 ">
+
+            <h1 class="pl-5">logo</h1>
+            <div class="flex pr-12 ">
+                <a class="mr-3" href="/feed" >feed</a>
+                <a  class="mr-3" href="/profile" >profile</a>
+                <a href="/logout">logout</a>
+            </div>
+
+        </div>
+    </div>
+    
+    <div class="ml-6 flex ">
+        <% post.forEach(function (elem) { %>
+            <div class="mr-6">
+                <img class="h-60 w-48" src=" /images/upload/<%=elem.image %>">
+                <h1 class="">
+                    <%=elem.imagetext%>
+                </h1>
+                <p class="">
+                    <%=elem.imagedesc%>
+                </p>
+            </div>
+            <%}) %>
+    </div>
+
+   
+    
+</div>
+
+
+
+
+
+    <% include ./partials/footer.ejs %>

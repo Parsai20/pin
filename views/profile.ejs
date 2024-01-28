@@ -1,0 +1,73 @@
+<% include ./partials/header.ejs %>
+
+    <div class=" h-screen w-screen">
+        <div class=" bg-slate-600 h-16 w-full ">
+            <div class="flex justify-between items-center pt-3 ">
+                <h1 class="pl-5">logo</h1>
+                <div class="flex pr-12 ">
+                    <a class="mr-3" href="/feed">feed</a>
+                    <a class="mr-3" href="/profile">profile</a>
+                    <a href="/logout">logout</a>
+                </div>
+            </div>
+        </div>
+        <div class="h-1/2 w-full flex justify-center bg-red-300 flex-col items-center mb-4 ">
+            <div class="relative">
+                <img class="h-52 w-52 rounded-full mt-7 bg-slate-200 " src="/images/upload/<%=user.profiledp%>">
+
+                <div class="h-8 w-8 bg-zinc-300 rounded-full absolute bottom-3 right-3 ">
+                    <i id="dpicon" class="ri-edit-2-fill px-2 py-2  "></i>
+
+                </div>
+            </div>
+            <h1>
+                <%=user.fullname%>
+            </h1>
+            <p class="mb-4">@
+                <%=user.username%>
+            </p>
+            <button class=" text-indigo-950 "><a href="/add">Add new post</a></button>
+        </div>
+
+        <div class="ml-6 flex ">
+            <% user.posts.forEach(function (post) { %>
+                <div class="mr-6">
+                    <img class="h-60 w-48" src=" /images/upload/<%=post.image %>">
+                    <h1 class="">
+                        <%=post.imagetext%>
+                    </h1>
+                    <p class="">
+                        <%=post.imagedesc%>
+                    </p>
+                </div>
+                <%}) %>
+        </div>
+
+        <form hidden action="/profiledp" method="post" enctype="multipart/form-data" id="editdp">
+            <input type="file" name="avatar" id="fileInput">
+            <input type="submit" value="submit">
+
+        </form>
+    </div>
+
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const dpIcon = document.getElementById("dpicon");
+            const fileInput = document.getElementById("fileInput");
+
+            dpIcon.addEventListener("click", function () {
+                fileInput.click(); // Trigger the file input click
+            });
+
+            fileInput.addEventListener("change", function () {
+                if (this.files && this.files[0]) {
+
+                    document.getElementById('editdp').submit();
+                }
+            });
+        });
+
+    </script>
+
+    <% include ./partials/footer.ejs %>
